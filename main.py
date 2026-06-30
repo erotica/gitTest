@@ -3,6 +3,7 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
+# Define a Pydantic model for the item
 
 class Item(BaseModel):
     name: str
@@ -11,11 +12,14 @@ class Item(BaseModel):
     tax: float | None = None
     tags: list[str] = []
 
+# Define a Post endpoint to create an item and a Get endpoint to read items
 
 @app.post("/items/")
 async def create_item(item: Item) -> Item:
     return item
 
+
+# Define a Get endpoint to read items
 
 @app.get("/items/")
 async def read_items() -> list[Item]:
